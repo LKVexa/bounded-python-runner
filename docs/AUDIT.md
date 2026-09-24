@@ -49,6 +49,12 @@ execution tests are platform-marked, and unknown-signal/isolation expectations
 reflect the corrected contract. One inherited filename described relative writes
 as confinement and was renamed.
 
+The initial Linux CI run exposed a file-limit fixture that left a buffered file
+unclosed: finalizer flush errors could be ignored while the process exited zero.
+The regression now flushes/closes explicitly and independently checks the file
+size is at most its configured cap. COMPLETED describes process exit/setup/capture,
+not a guarantee that every application I/O operation succeeded.
+
 Process behavior was checked against official Python documentation:
 [subprocess](https://docs.python.org/3/library/subprocess.html),
 [resource](https://docs.python.org/3/library/resource.html), and
