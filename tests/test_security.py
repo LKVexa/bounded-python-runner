@@ -171,9 +171,10 @@ class LinuxExecution(unittest.TestCase):
         self.assertEqual(record['verdict'], 'KILLED_SIGNAL')
 
     def test_per_file_size_limit(self):
-        record = core.run_trusted_python('open("large", "wb").write(b"x"*10000)',
-                                         core.ExecutionPolicy(max_file_bytes=1024))
+        code = 'import os\ntry:\n with open("large", "wb") as output:\n  output.write(b"x"*10000)\n  output.flush()\nfinally:\n print(os.stat("large").st_size)'
+        record = core.run_trusted_python(code, core.ExecutionPolicy(max_file_bytes=1024))
         self.assertNotEqual(record['verdict'], 'COMPLETED')
+        self.assertLessEqual(int(record['stdout'].strip()), 1024)
 
     def test_receipts_do_not_share_mutable_isolation_lists(self):
         first = core.run_trusted_python('pass')
