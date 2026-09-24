@@ -1,0 +1,36 @@
+{
+ "build": "JY-S023-P001/0.1.1-partial/run-0001",
+ "environment": {
+  "executor": "claude cowork session 01SaQzDRzMFXvRabmCC6JDJD",
+  "python": "3.11.15",
+  "platform": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
+  "location": "Anthropic cloud container (Linux)"
+ },
+ "checks": [
+  {
+   "id": "baseline-unit-tests",
+   "command": "python3 -m unittest discover -s tests -t .",
+   "result": "PASS 13/13 (baseline 0.1.0-partial)",
+   "captured_at": "2026-09-14T19:04:20.115673+00:00"
+  },
+  {
+   "id": "audit-probes",
+   "command": "probe1.py (F1-F5 live reproductions)",
+   "result": "5 findings reproduced on baseline; all pass fixed on candidate",
+   "captured_at": "2026-09-14T19:04:20.115673+00:00"
+  },
+  {
+   "id": "unit-tests",
+   "command": "python3 -m unittest discover -s tests -t .",
+   "result": "PASS 18/18 (candidate 0.1.1-partial, final bytes)",
+   "captured_at": "2026-09-14T19:04:20.115673+00:00"
+  }
+ ],
+ "unrun_checks": [
+  "kernel-grade isolation profile",
+  "796-item program and G0-G9 gates",
+  "native Windows launch UNRUN - no Windows runtime this session",
+  "independent review NOT PERFORMED"
+ ],
+ "note": "Evidence current for these inputs on this host only."
+}
