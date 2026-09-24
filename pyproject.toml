@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=78,<85"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bounded-python-runner"
+version = "0.1.2a1"
+description = "Linux resource-bounded trusted Python execution with explicit isolation limits and receipts"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE", "THIRD-PARTY-NOTICES.md"]
+authors = [{name = "RUSSELL PHILIP SMITHSON"}]
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["e03*"]
